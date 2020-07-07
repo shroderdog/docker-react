@@ -8,3 +8,16 @@ before_install:
 
 script:
   - docker run -e CI=true shroderdog/docker-react npm run test
+
+deploy:
+  provider: elasticbeanstalk
+  region: us-east-1
+  app: "node-react"
+  env: "NodeReact-env"
+  bucket_name: "elasticbeanstalk-us-east-1-764430996326"
+  bucket_path: "node-react"
+  on:
+    branch: master
+  access_key_id: $access_key_id
+  secret_access_key:
+    secure: "$secret_access_key"
